@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .wrap-select{width: 115px;position: relative;border: solid 1px #f1f1f1;background: #fdfdfd;color: #333}
+    .wrap-select .header{cursor:pointer}
+    .wrap-select .header.active .icon{    transition:0.6s;
+    transform: rotate(-360deg);}
+    .wrap-select .title{font-size: 18px;
+    width: calc(100% - 29px);
+    display: inline-block;
+    padding: 10px 2px 10px 5px;}
+    .wrap-select .icon{
+    width: 1px;
+    height: 1px;
+    display: inline-block;
+    border: solid 7px transparent;
+    border-bottom: solid 7px #d83b3b;
+    border-top: none;
+    transform: rotate(-180deg);
+    transition:0.6s;}
+    .wrap-select input{display: none}
+
+    .wrap-select ul{display: none;background:#f1f1f1;position: absolute;top:calc(100% + 1px);left: 0;width: 100%;    margin: 0;
+    list-style: none;
+    padding: 0;}
+    .wrap-select ul li{padding: 10px 5px;cursor: pointer}
+    .wrap-select ul li:hover{background:#f00000;color: #f1f1f1}
+
+</style>
+<body>
+    <div class="wrap-select">
+        <div class="header js-select">
+            <span class="title">Tamanho</span>
+            <input type="text" disabled>
+            <span class="icon"></span>
+        </div>
+        <ul class="content-select js-content-select">
+            <li class="item">P</li>
+            <li class="item">M</li>
+            <li class="item">G</li>
+            <li class="item">GG</li>
+        </ul>
+    </div>
+
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+  <script>
+      $(".js-select").on('click', function(){
+          $(this).toggleClass("active").next("ul").slideToggle();
+      });
+      $(".js-content-select li").on('click', function(){
+          $value = $(this).text();
+          $(this).parent().prev().click().find(".title").html($value).next("input").val($value);
+      })
+  </script>
+</body>
+</html>
